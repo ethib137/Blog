@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from './Head';
+
+import Article from './Article';
 import Nav from './Nav';
 import css from 'next/css';
 import * as utils from '../static/utils.js';
@@ -64,16 +66,11 @@ class Feed extends React.Component {
 		return (
 			<div {...css(articleList, utils.standardPadding)}>
 				<div className="container">
-					{this.state._articles.map((article) => {
-						console.log(article);
-						return (
-							<article className={articleCard} key={article.id}>
-								<h5>{article.title}</h5>
-								<p dangerouslySetInnerHTML={createMarkup(article.contentHTML)}></p>
-								<a href="/post" className={utils.smallFont}>Read More</a>
-							</article>
+					{
+						this.state._articles.map(
+							article => (<Article article={article} key={article.id} />)
 						)
-					})}
+					}
 				</div>
 			</div>
 		);

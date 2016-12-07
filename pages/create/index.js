@@ -22,7 +22,9 @@ export default class extends React.Component {
 			{
 				"title": this.refs.title.value,
 				"contentMarkdown": this.refs.editor.state._value,
-				"contentHTML": this.refs.editor.state._preview
+				"contentHTML": this.refs.editor.state._preview,
+				"createDate": Date.now(),
+				"userName": this.refs.userName.value
 			}
 		).then(function(post) {
 			console.log(post);
@@ -37,7 +39,17 @@ export default class extends React.Component {
 				<Header title="Create new Post" />
 
 				<form onSubmit={this._handleSubmit}>
-					<input label="title" type="text" ref="title"/>
+					<div>
+						<span className="input-label">Name</span>
+
+						<input label="userName" type="text" ref="userName" />
+					</div>
+
+					<div>
+						<span className="input-label">Title</span>
+
+						<input label="title" type="text" ref="title"/>
+					</div>
 
 					<Editor ref="editor" />
 
